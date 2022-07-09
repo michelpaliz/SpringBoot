@@ -3,35 +3,28 @@ package com.testing.demo.Models;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Estudiante {
-    private long id;
+public class Persona {
+    private String dni;
     private String nombre;
     private String email;
     private LocalDate fechaNacimiento;
     private Integer edad;
 
     // En este constructo no utlizo el id; lo va a generar mi base de datos
-    public Estudiante(String nombre, String email, LocalDate fechaNacimiento, Integer edad) {
+    public Persona(String dni, String nombre, String email, LocalDate fechaNacimiento, Integer edad) {
+        this.dni = dni;
         this.nombre = nombre;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
         this.edad = edad;
     }
 
-    public Estudiante(long id, String nombre, String emai, LocalDate fechaNacimiento, Integer edad) {
-        this.id = id;
-        this.nombre = nombre;
-        this.email = emai;
-        this.fechaNacimiento = fechaNacimiento;
-        this.edad = edad;
+    public String getId() {
+        return dni;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public void setId(String dni) {
+        this.dni = dni;
     }
 
     public String getNombre() {
@@ -75,8 +68,12 @@ public class Estudiante {
 
     @Override
     public String toString() {
-        return "Student [edad=" + edad + ", email=" + email + ", fechaNacimiento=" + fechaNacimiento + ", id=" + id
-                + ", nombre=" + nombre + "]";
+        return "Persona{" +
+                "dni='" + dni + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", email='" + email + '\'' +
+                ", fechaNacimiento=" + fechaNacimiento +
+                ", edad=" + edad +
+                '}';
     }
-
 }

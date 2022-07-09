@@ -28,6 +28,11 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>  
+			<groupId>org.projectlombok</groupId> 
+			 <artifactId>lombok</artifactId>
+		</dependency>
+
 			<!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
 		<dependency>
 			<groupId>com.github.javafaker</groupId>
