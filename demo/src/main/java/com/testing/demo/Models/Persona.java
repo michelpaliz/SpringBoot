@@ -3,6 +3,9 @@ package com.testing.demo.Models;
 import java.time.LocalDate;
 import java.time.Period;
 
+import lombok.Data;
+
+@Data
 public class Persona {
     private String dni;
     private String nombre;
@@ -16,46 +19,6 @@ public class Persona {
         this.nombre = nombre;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
-        this.edad = edad;
-    }
-
-    public String getId() {
-        return dni;
-    }
-
-    public void setId(String dni) {
-        this.dni = dni;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public LocalDate getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public Integer getEdad() {
-        return edad;
-    }
-
-    public void setEdad(Integer edad) {
         this.edad = edad;
     }
 

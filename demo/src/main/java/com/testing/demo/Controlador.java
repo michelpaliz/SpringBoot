@@ -1,4 +1,5 @@
 package com.testing.demo;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -7,23 +8,42 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.stream.Collectors;
 import com.Lib.Control;
 import com.github.javafaker.Faker;
 import com.testing.demo.Models.Empleado;
+import com.testing.demo.Models.EmpleadoRepositorio;
 import com.testing.demo.Numeric.EProfesion;
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
+
 @Slf4j
 @Controller
-@RequestMapping("/empleados")
+// @RequestMapping("/design")
+// @SessionAttributes("empleado")
+public class Controlador implements IServicio {
 
-public class Inventario {
 	private Empleado empleado;
 	private List<Empleado> empleados;
 
-    @GetMapping
+	@Autowired
+	private EmpleadoRepositorio repositorio;
+
+	@Override
+	public List<Empleado> mostrarEmpleados() {
+		return repositorio.findAll();
+	}
+
+	@ModelAttribute
 	// vamos a coger algo de nuestro servidor para exportarlo.
 	public String randomEmpleados() {
 		empleados = new ArrayList<>();
@@ -42,11 +62,27 @@ public class Inventario {
 			profesion = profesion.getRandom();
 			int antiguedad = fk.random().nextInt(0, 10);
 			empleado = new Empleado(dni, nombre, email, fechaNacimiento, edad, profesion, antiguedad);
+			repositorio.save(empleado);
 			empleados.add(empleado);
 		}
 		return empleados.toString();
 	}
 
-    
+	@GetMapping("/tipoProfesion")
+	public String mostrarTipoProfesion(Model model) {
+		randomEmpleados();
+		model.addAttribute("empleados", mostrarEmpleados());
+		// for (Empleado empleado : empleados) {
+		// // model.addAttribute("empleados", clasificarTipo(empleado.getProfesion()));
+		// }
+		System.out.println(empleados);
+		return "index";
+	}
+
+
+	@ModelAttribute
+	public Iterable<Empleado> clasificarTipo(EProfesion profesion) {
+		return empleados.stream().filter(x -> x.getProfesion().equals(profesion)).collect(Collectors.toList());
+	}
 
 }
