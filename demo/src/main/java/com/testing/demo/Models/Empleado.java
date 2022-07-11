@@ -10,22 +10,28 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.servlet.resources.*;
 
-
-
 import com.testing.demo.Numeric.EProfesion;
-@Entity
-@Table(name = "empleados")
 
+import lombok.Data;
+
+@Entity
 public class Empleado extends Persona {
     private static int cont;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column(name = "Profesion", nullable = false, length =  50)
+    // @Id
+    // @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    // @Column(name = "Profesion", nullable = false, length = 50)
     private EProfesion profesion;
-    @Column(name = "Antiguedad", nullable = false, length = 5)
+    // @Column(name = "Antiguedad", nullable = false, length = 5)
     private int antiguedad;
 
+    public Empleado() {
+        super();
+        ++cont;
+        this.id = cont;
+        this.profesion = null;
+        this.antiguedad = 0;
+    }
 
     public Empleado(String dni, String nombre, String emai, LocalDate fechaNacimiento, Integer edad,
             EProfesion profesion,
@@ -43,7 +49,7 @@ public class Empleado extends Persona {
 
     @Override
     public String toString() {
-        return super.toString()  +
+        return super.toString() +
                 " id=" + id +
                 ", profesion=" + profesion +
                 ", antiguedad=" + antiguedad +
