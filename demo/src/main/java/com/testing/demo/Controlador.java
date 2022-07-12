@@ -12,7 +12,9 @@ import java.util.stream.Collectors;
 import com.Lib.Control;
 import com.github.javafaker.Faker;
 import com.testing.demo.Models.Empleado;
-import com.testing.demo.Models.EmpleadoRepositorio;
+import com.testing.demo.Models.Persona;
+import com.testing.demo.Models.repository.EmpleadoRepositorio;
+import com.testing.demo.Models.repository.PersonaRepositorio;
 import com.testing.demo.Numeric.EProfesion;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,21 +33,24 @@ import org.springframework.web.servlet.ModelAndView;
 // @RequestMapping("/design")
 // @SessionAttributes("empleado")
 public class Controlador implements IServicio {
-
+	private App app;
+	private PersonaRepositorio personaRepositorio;
 	private Empleado empleado;
 	private List<Empleado> empleados;
 
 	@Autowired
-	private EmpleadoRepositorio repositorio;
+	private PersonaRepositorio repositorio;
 
 	@Override
-	public List<Empleado> mostrarEmpleados() {
+	public Iterable<Persona> mostrarEmpleados() {
 		return repositorio.findAll();
 	}
 
 	@ModelAttribute
 	// vamos a coger algo de nuestro servidor para exportarlo.
 	public String randomEmpleados() {
+		app = new App();
+		personaRepositorio = app.getEmpleado();
 		empleados = new ArrayList<>();
 		Faker fk = new Faker();
 		Date fechaMaxima = new GregorianCalendar(1999, Calendar.FEBRUARY, 11).getTime();
@@ -62,7 +67,7 @@ public class Controlador implements IServicio {
 			profesion = profesion.getRandom();
 			int antiguedad = fk.random().nextInt(0, 10);
 			empleado = new Empleado(dni, nombre, email, fechaNacimiento, edad, profesion, antiguedad);
-			repositorio.save(empleado);
+			personaRepositorio.save(empleado);
 			empleados.add(empleado);
 		}
 		return empleados.toString();
@@ -78,7 +83,6 @@ public class Controlador implements IServicio {
 		System.out.println(empleados);
 		return "index";
 	}
-
 
 	@ModelAttribute
 	public Iterable<Empleado> clasificarTipo(EProfesion profesion) {

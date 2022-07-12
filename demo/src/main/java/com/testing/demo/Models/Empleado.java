@@ -1,5 +1,6 @@
 package com.testing.demo.Models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 import javax.servlet.resources.*;
 
@@ -15,15 +17,17 @@ import com.testing.demo.Numeric.EProfesion;
 import lombok.Data;
 
 @Entity
-public class Empleado extends Persona {
-    private static int cont;
+// @Table()
+// @IdClass(Empleado.class)
+public class Empleado extends Persona implements Serializable {
+    private static long cont;
     // @Id
     // @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     // @Column(name = "Profesion", nullable = false, length = 50)
     private EProfesion profesion;
     // @Column(name = "Antiguedad", nullable = false, length = 5)
-    private int antiguedad;
+    private long antiguedad;
 
     public Empleado() {
         super();
