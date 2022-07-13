@@ -7,6 +7,6 @@ import com.testing.demo.Models.Persona;
 
 public interface IServicio {
 
-    public Iterable<Persona> mostrarEmpleados();
-    
+    public Iterable<Empleado> mostrarEmpleados();
+
 }

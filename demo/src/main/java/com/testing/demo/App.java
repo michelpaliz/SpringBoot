@@ -30,7 +30,7 @@ public class App {
 
 	}
 
-	PersonaRepositorio getEmpleado() {
+	PersonaRepositorio getEmpleadoRepositorio() {
 		return empleado;
 	}
 

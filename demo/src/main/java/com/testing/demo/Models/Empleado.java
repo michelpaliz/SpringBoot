@@ -17,12 +17,13 @@ import com.testing.demo.Numeric.EProfesion;
 import lombok.Data;
 
 @Entity
-// @Table()
+
 // @IdClass(Empleado.class)
 public class Empleado extends Persona implements Serializable {
     private static long cont;
     // @Id
     // @GeneratedValue(strategy = GenerationType.AUTO)
+    // @Id
     private long id;
     // @Column(name = "Profesion", nullable = false, length = 50)
     private EProfesion profesion;
@@ -31,10 +32,6 @@ public class Empleado extends Persona implements Serializable {
 
     public Empleado() {
         super();
-        ++cont;
-        this.id = cont;
-        this.profesion = null;
-        this.antiguedad = 0;
     }
 
     public Empleado(String dni, String nombre, String emai, LocalDate fechaNacimiento, Integer edad,
@@ -51,6 +48,18 @@ public class Empleado extends Persona implements Serializable {
         return profesion;
     }
 
+    public static long getCont() {
+        return cont;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public long getAntiguedad() {
+        return antiguedad;
+    }
+
     @Override
     public String toString() {
         return super.toString() +
@@ -59,4 +68,5 @@ public class Empleado extends Persona implements Serializable {
                 ", antiguedad=" + antiguedad +
                 '}';
     }
+
 }

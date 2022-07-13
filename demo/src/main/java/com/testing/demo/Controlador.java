@@ -32,25 +32,21 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 // @RequestMapping("/design")
 // @SessionAttributes("empleado")
-public class Controlador implements IServicio {
+public class Controlador {
 	private App app;
 	private PersonaRepositorio personaRepositorio;
 	private Empleado empleado;
 	private List<Empleado> empleados;
 
-	@Autowired
-	private PersonaRepositorio repositorio;
-
-	@Override
 	public Iterable<Persona> mostrarEmpleados() {
-		return repositorio.findAll();
+		return personaRepositorio.findAll();
 	}
 
 	@ModelAttribute
 	// vamos a coger algo de nuestro servidor para exportarlo.
 	public String randomEmpleados() {
 		app = new App();
-		personaRepositorio = app.getEmpleado();
+		personaRepositorio = app.getEmpleadoRepositorio();
 		empleados = new ArrayList<>();
 		Faker fk = new Faker();
 		Date fechaMaxima = new GregorianCalendar(1999, Calendar.FEBRUARY, 11).getTime();
@@ -73,7 +69,7 @@ public class Controlador implements IServicio {
 		return empleados.toString();
 	}
 
-	@GetMapping("/tipoProfesion")
+	@GetMapping("/")
 	public String mostrarTipoProfesion(Model model) {
 		randomEmpleados();
 		model.addAttribute("empleados", mostrarEmpleados());

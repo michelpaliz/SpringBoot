@@ -18,10 +18,12 @@ import org.hibernate.annotations.ManyToAny;
 import lombok.Data;
 
 // @Table(name = "empleados")
+@Data
 @MappedSuperclass
 public abstract class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private long numero_registro;
     private String dni;
     // @Column(name = "Nombre", nullable = false, length = 50)
     private String nombre;
@@ -33,11 +35,6 @@ public abstract class Persona {
     private Integer edad;
 
     public Persona() {
-        this.dni = null;
-        this.nombre = null;
-        this.email = null;
-        this.fechaNacimiento = null;
-        this.edad = null;
     }
 
     // En este constructo no utlizo el id; lo va a generar mi base de datos
