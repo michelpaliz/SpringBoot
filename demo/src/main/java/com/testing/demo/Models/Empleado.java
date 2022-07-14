@@ -5,6 +5,8 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,6 +28,7 @@ public class Empleado extends Persona implements Serializable {
     // @Id
     private long id;
     // @Column(name = "Profesion", nullable = false, length = 50)
+    @Enumerated(value = EnumType.STRING)
     private EProfesion profesion;
     // @Column(name = "Antiguedad", nullable = false, length = 5)
     private long antiguedad;

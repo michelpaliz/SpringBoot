@@ -34,19 +34,22 @@ import org.springframework.web.servlet.ModelAndView;
 // @SessionAttributes("empleado")
 public class Controlador {
 	private App app;
+	@Autowired
+	private EmpleadoRepositorio empleadoRepositorio;
 	private PersonaRepositorio personaRepositorio;
 	private Empleado empleado;
 	private List<Empleado> empleados;
 
-	public Iterable<Persona> mostrarEmpleados() {
-		return personaRepositorio.findAll();
+	public Iterable<Empleado> mostrarEmpleados() {
+		return empleadoRepositorio.findAll();
+		// return empleadoRepositorio.findAll();
 	}
 
 	@ModelAttribute
 	// vamos a coger algo de nuestro servidor para exportarlo.
 	public String randomEmpleados() {
 		app = new App();
-		personaRepositorio = app.getEmpleadoRepositorio();
+		empleadoRepositorio = app.getEmpleadoRepositorio();
 		empleados = new ArrayList<>();
 		Faker fk = new Faker();
 		Date fechaMaxima = new GregorianCalendar(1999, Calendar.FEBRUARY, 11).getTime();
@@ -63,7 +66,7 @@ public class Controlador {
 			profesion = profesion.getRandom();
 			int antiguedad = fk.random().nextInt(0, 10);
 			empleado = new Empleado(dni, nombre, email, fechaNacimiento, edad, profesion, antiguedad);
-			personaRepositorio.save(empleado);
+			empleadoRepositorio.save(empleado);
 			empleados.add(empleado);
 		}
 		return empleados.toString();

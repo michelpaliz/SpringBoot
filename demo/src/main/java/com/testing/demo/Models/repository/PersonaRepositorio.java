@@ -9,5 +9,4 @@ import com.testing.demo.Models.Persona;
 // JpaRepository
 @NoRepositoryBean
 public interface PersonaRepositorio extends CrudRepository<Persona, String> {
-
 }

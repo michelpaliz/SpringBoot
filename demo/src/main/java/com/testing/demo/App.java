@@ -14,7 +14,8 @@ import com.testing.demo.Models.repository.PersonaRepositorio;
 @SpringBootApplication
 // @RestController // esto hace que nuestra clase reciba restpoints
 public class App {
-	private static PersonaRepositorio empleado;
+	private static PersonaRepositorio personaRepositorio;
+	private static EmpleadoRepositorio empleadoRepositorio;
 	private static ConfigurableApplicationContext configuracion;
 	// private static Controlador;
 
@@ -24,14 +25,18 @@ public class App {
 		configuracion = SpringApplication.run(App.class,
 				args);
 
-		empleado = configuracion.getBean(EmpleadoRepositorio.class);
+		empleadoRepositorio = configuracion.getBean(EmpleadoRepositorio.class);
 
 		// c.randomEmpleados(empleado);
 
 	}
 
-	PersonaRepositorio getEmpleadoRepositorio() {
-		return empleado;
+	PersonaRepositorio getPersonaRepositorio() {
+		return personaRepositorio;
+	}
+
+	EmpleadoRepositorio getEmpleadoRepositorio() {
+		return empleadoRepositorio;
 	}
 
 }
