@@ -5,15 +5,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <title>Document</title>
 </head>
 
 <body>
     <h1>Bienvenido a mi pagina </h1>
     <!-- <p th:text="${message}"></p> -->
-    <div th:each="empleado : ${empleados}">
+    <!-- <div th:each="empleado : ${empleados}">
         <p th:text="${empleado}"></p>
+    </div> -->
+    <div class="container">
+        <div class="row">
+            <h1>Lista de Empleados</h1>
+        </div>
+
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th>Numero_registrado</th>
+                    <th>dni</th>
+                    <th>edad</th>
+                    <th>email</th>
+                    <th>fecha_nacimiento</th>
+                    <th>nombre</th>
+                    <th>antiguedad</th>
+                    <th>id_trabajo</th>
+                    <th>profesion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="empleado:${empleados}">
+                    <th th:text="${empleado.Numero_registro}">Numero_registrado</th>
+                    <th th:text="${empleado.dni}">dni</th>
+                    <th th:text="${empleado.edad}">edad</th>
+                    <th th:text="${empleado.email}">email</th>
+                    <th th:text="${empleado.fechaNacimiento}">fecha_nacimiento</th>
+                    <th th:text="${empleado.nombre}">nombre</th>
+                    <th th:text="${empleado.antiguedad}">antiguedad/th>
+                    <th th:text="${empleado.id}">id</th>
+                    <th th:text="${empleado.profesion}">profesion</th>
+                </tr>
+            </tbody>
+        </table>
+
+
     </div>
+
+
 </body>
 
 </html>
