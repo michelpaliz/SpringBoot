@@ -13,24 +13,24 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 import javax.servlet.resources.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.testing.demo.Numeric.EProfesion;
 
 import lombok.Data;
 
 @Entity
-
 // @IdClass(Empleado.class)
 public class Empleado extends Persona implements Serializable {
     private static long cont;
     // @Id
-    // @GeneratedValue(strategy = GenerationType.AUTO)
-    // @Id
     private long id;
-    // @Column(name = "Profesion", nullable = false, length = 50)
     @Enumerated(value = EnumType.STRING)
     private EProfesion profesion;
-    // @Column(name = "Antiguedad", nullable = false, length = 5)
+    // @NotNull
+    // @Size(message = "la antiguedad es requerida")
     private long antiguedad;
 
     public Empleado() {

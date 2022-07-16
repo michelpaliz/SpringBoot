@@ -31,11 +31,11 @@ public class App {
 
 	}
 
-	PersonaRepositorio getPersonaRepositorio() {
+	public PersonaRepositorio getPersonaRepositorio() {
 		return personaRepositorio;
 	}
 
-	EmpleadoRepositorio getEmpleadoRepositorio() {
+	public EmpleadoRepositorio getEmpleadoRepositorio() {
 		return empleadoRepositorio;
 	}
 

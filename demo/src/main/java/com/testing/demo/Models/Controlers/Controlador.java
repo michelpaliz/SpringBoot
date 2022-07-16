@@ -1,4 +1,4 @@
-package com.testing.demo;
+package com.testing.demo.Models.Controlers;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -9,8 +9,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.validation.Valid;
+
 import com.Lib.Control;
 import com.github.javafaker.Faker;
+import com.testing.demo.App;
 import com.testing.demo.Models.Empleado;
 import com.testing.demo.Models.Persona;
 import com.testing.demo.Models.repository.EmpleadoRepositorio;
@@ -21,8 +25,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -82,6 +88,30 @@ public class Controlador {
 		System.out.println(empleados);
 		return "index";
 	}
+
+	@GetMapping("/registro")
+	public String nuevoEmpleado(Model model) {
+		model.addAttribute("nuevoEmpleado", empleado = new Empleado());
+		return "registro";
+	}
+
+	@PostMapping("/registro")
+	public String procesarRegistro(Empleado empleado) {
+		empleadoRepositorio.save(empleado);
+		System.out.println(empleado);
+		log.info("Peticion enviada " + empleado);
+		return "redirect:/";
+	}
+
+	// @PostMapping
+	// public String registrarEmpleado(@Valid @ModelAttribute("empleado") Empleado
+	// empleado, Errors errors) {
+	// if (errors.hasErrors()) {
+	// return "/";
+	// }
+	// log.info("Procesando el registro" + empleado);
+	// return "redirect:/baseDatos";
+	// }
 
 	@ModelAttribute
 	public Iterable<Empleado> clasificarTipo(EProfesion profesion) {

@@ -12,10 +12,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.ManyToAny;
 
 import lombok.Data;
+import lombok.NonNull;
 
 // @Table(name = "empleados")
 @Data
@@ -24,14 +30,18 @@ public abstract class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long numero_registro;
+    // @NotNull
+    // @Size(min = 9, max = 9, message = "El dni no es correcto")
     private String dni;
-    // @Column(name = "Nombre", nullable = false, length = 50)
+    // @NotNull
+    // @Size(message = "El nombre es requerido")
     private String nombre;
-    // @Column(name = "Email", nullable = false, length = 50)
+    // @NotNull
+    // @Email
     private String email;
-    // @Column(name = "FechaNacimiento", nullable = false, length = 50)
+    // @NotNull(message = "fecha incorrecta")
     private LocalDate fechaNacimiento;
-    // @Column(name = "Edad", nullable = false, length = 10)
+    // @NotNull(message = "edad incorrecta")
     private Integer edad;
 
     public Persona() {
