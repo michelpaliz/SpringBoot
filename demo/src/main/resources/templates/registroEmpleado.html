@@ -15,11 +15,11 @@
             <h3>Introduce el nombre del empleado.</h3>
             <label for="dni">Dni: </label>
             <input type="text" th:field="*{dni}" />
-            <span class="validationError" th:if="${#field.hasErrors('dni')}" th:errors="*{dni}"></span>
+            <span class="validationError" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span>
             <br />
             <label for="nombre">Nombre: </label>
             <input type="text" th:field="*{nombre}" />
-            <span class="validationError" th:if="${#field.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+            <span class="validationError" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
             <br />
             <label for="email">Email: </label>
             <input type="text" th:field="*{email}" />
