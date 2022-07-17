@@ -36,7 +36,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
 @Controller
-// @RequestMapping("/design")
 // @SessionAttributes("empleado")
 public class Controlador {
 	private App app;
@@ -68,10 +67,10 @@ public class Controlador {
 			String email = fk.name().username() + "@homtail.com";
 			Date date = fk.date().between(fechaMinima, fechaMaxima);
 			LocalDate fechaNacimiento = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			Integer edad = Period.between(fechaNacimiento, LocalDate.now()).getYears();
+			// Integer edad = Period.between(fechaNacimiento, LocalDate.now()).getYears();
 			profesion = profesion.getRandom();
 			int antiguedad = fk.random().nextInt(0, 10);
-			empleado = new Empleado(dni, nombre, email, fechaNacimiento, edad, profesion, antiguedad);
+			empleado = new Empleado(dni, nombre, email, fechaNacimiento, profesion, antiguedad);
 			empleadoRepositorio.save(empleado);
 			empleados.add(empleado);
 		}
@@ -89,29 +88,33 @@ public class Controlador {
 		return "index";
 	}
 
+	// Esta funcion me crea un nuevo empleado y me lleva al registro.html
 	@GetMapping("/registro")
 	public String nuevoEmpleado(Model model) {
 		model.addAttribute("nuevoEmpleado", empleado = new Empleado());
-		return "registro";
+		return "registroEmpleado";
 	}
 
+	// Esta funcion me guarda el empleado nuevo que he creado en el registro.html y
+	// me redirecciona el registro para que me lo valide correctamente
+	// @PostMapping("/registro")
+	// public String procesarRegistro(Empleado empleado) {
+	// empleadoRepositorio.save(empleado);
+	// System.out.println(empleado);
+	// log.info("Peticion enviada " + empleado);
+	// return "redirect:/procesando";
+	// }
 	@PostMapping("/registro")
-	public String procesarRegistro(Empleado empleado) {
+	public String registrarEmpleado(@Valid @ModelAttribute("empleado") Empleado empleado, Errors errors) {
+		if (errors.hasErrors()) {
+			return "registroEmpleado";
+		}
 		empleadoRepositorio.save(empleado);
 		System.out.println(empleado);
 		log.info("Peticion enviada " + empleado);
+		log.info("Procesando el registro" + empleado);
 		return "redirect:/";
 	}
-
-	// @PostMapping
-	// public String registrarEmpleado(@Valid @ModelAttribute("empleado") Empleado
-	// empleado, Errors errors) {
-	// if (errors.hasErrors()) {
-	// return "/";
-	// }
-	// log.info("Procesando el registro" + empleado);
-	// return "redirect:/baseDatos";
-	// }
 
 	@ModelAttribute
 	public Iterable<Empleado> clasificarTipo(EProfesion profesion) {

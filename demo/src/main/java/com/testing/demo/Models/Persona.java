@@ -30,14 +30,13 @@ public abstract class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long numero_registro;
-    // @NotNull
-    // @Size(min = 9, max = 9, message = "El dni no es correcto")
+    @NotNull
+    @Size(min = 9, max = 9, message = "El dni no es correcto")
     private String dni;
-    // @NotNull
-    // @Size(message = "El nombre es requerido")
+    @NotNull(message = "El nombre es requerido")
     private String nombre;
-    // @NotNull
-    // @Email
+    @NotNull
+    @Email
     private String email;
     // @NotNull(message = "fecha incorrecta")
     private LocalDate fechaNacimiento;
@@ -48,12 +47,12 @@ public abstract class Persona {
     }
 
     // En este constructo no utlizo el id; lo va a generar mi base de datos
-    public Persona(String dni, String nombre, String email, LocalDate fechaNacimiento, Integer edad) {
+    public Persona(String dni, String nombre, String email, LocalDate fechaNacimiento) {
         this.dni = dni;
         this.nombre = nombre;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
-        this.edad = edad;
+        this.edad = calcularEdad();
     }
 
     /**

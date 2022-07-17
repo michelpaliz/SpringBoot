@@ -29,18 +29,16 @@ public class Empleado extends Persona implements Serializable {
     private long id;
     @Enumerated(value = EnumType.STRING)
     private EProfesion profesion;
-    // @NotNull
-    // @Size(message = "la antiguedad es requerida")
+    @NotNull(message = "la antiguedad es requerida")
     private long antiguedad;
 
     public Empleado() {
         super();
     }
 
-    public Empleado(String dni, String nombre, String emai, LocalDate fechaNacimiento, Integer edad,
-            EProfesion profesion,
+    public Empleado(String dni, String nombre, String emai, LocalDate fechaNacimiento, EProfesion profesion,
             int antiguedad) {
-        super(dni, nombre, emai, fechaNacimiento, edad);
+        super(dni, nombre, emai, fechaNacimiento);
         ++cont;
         this.id = cont;
         this.profesion = profesion;

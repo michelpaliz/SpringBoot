@@ -15,9 +15,11 @@
             <h3>Introduce el nombre del empleado.</h3>
             <label for="dni">Dni: </label>
             <input type="text" th:field="*{dni}" />
+            <span class="validationError" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span>
             <br />
             <label for="nombre">Nombre: </label>
             <input type="text" th:field="*{nombre}" />
+            <span class="validationError" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
             <br />
             <label for="email">Email: </label>
             <input type="text" th:field="*{email}" />
@@ -25,15 +27,13 @@
             <label for="fechaNacimiento">Fecha Nacimiento: </label>
             <input type="text" th:field="*{fechaNacimiento}" />
             <br />
-            <label for="edad">Edad: </label>
-            <input type="text" th:field="*{edad}" /> <br />
             <h3>Profesion</h3>
             <label for="profesion">Profesion: </label>
             <input type="text" th:field="*{profesion}" />
             <br />
-            <h3>Profesion</h3>
+            <h3>Antiguedad</h3>
             <label for="antiguedad">Antiguedad: </label>
-            <input type="text" th:field="*{antiguedad}" />
+            <input type="number" th:field="*{antiguedad}" />
             <br />
             <input type="submit" value="Submit Empleado">
         </form>
