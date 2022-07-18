@@ -34,6 +34,8 @@ public class Empleado extends Persona implements Serializable {
 
     public Empleado() {
         super();
+        ++cont;
+        this.id = cont;
     }
 
     public Empleado(String dni, String nombre, String emai, LocalDate fechaNacimiento, EProfesion profesion,

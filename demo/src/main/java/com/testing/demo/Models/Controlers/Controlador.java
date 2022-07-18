@@ -39,7 +39,6 @@ import org.springframework.web.servlet.ModelAndView;
 // @SessionAttributes("empleado")
 public class Controlador {
 	private App app;
-	private Model model;
 	@Autowired
 	private EmpleadoRepositorio empleadoRepositorio;
 	private PersonaRepositorio personaRepositorio;
@@ -79,7 +78,7 @@ public class Controlador {
 	}
 
 	@GetMapping("/")
-	public String mostrarTipoProfesion() {
+	public String mostrarTipoProfesion(Model model) {
 		randomEmpleados();
 		model.addAttribute("empleados", mostrarEmpleados());
 		// for (Empleado empleado : empleados) {
@@ -92,7 +91,7 @@ public class Controlador {
 	// Esta funcion me crea un nuevo empleado y me lleva al registro.html
 	@GetMapping("/registrarEmpleado")
 	public String nuevoEmpleado(Model model) {
-		model.addAttribute("nuevoEmpleado", empleado = new Empleado());
+		model.addAttribute("nuevoEmpleado", new Empleado());
 		return "registroEmpleado";
 	}
 
@@ -106,15 +105,17 @@ public class Controlador {
 	// return "redirect:/procesando";
 	// }
 	@PostMapping("/registro")
-	public String registrarEmpleado(@Valid @ModelAttribute("nuevoEmpleado") Empleado empleado, Errors errors, Model model) {
-	
+	public String registrarEmpleado(@Valid @ModelAttribute("nuevoEmpleado") Empleado empleado, Errors errors) {
+		// System.out.println(empleado);
+
 		if (errors.hasErrors()) {
-			return "registroEmpleado";
+			// empleadoRepositorio.delete(empleado);
+			return "/registroEmpleado";
 		}
 		empleadoRepositorio.save(empleado);
 		System.out.println(empleado);
-		log.info("Peticion enviada " + empleado);
-		log.info("Procesando el registro" + empleado);
+		// log.info("Peticion enviada " + empleado);
+		// log.info("Procesando el registro" + empleado);
 		return "redirect:/";
 	}
 
