@@ -19,7 +19,7 @@ import com.testing.demo.Models.FechaNacimientoValidator;
 @Retention(RUNTIME)
 @Documented
 public @interface IFechaNacimiento {
-    String message() default "{tiene que ser antes de {value}}";
+    String message() default "tiene que ser antes de {value}";
 
     Class<?>[] groups() default {};
 
