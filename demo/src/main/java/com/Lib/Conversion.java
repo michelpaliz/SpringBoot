@@ -46,7 +46,7 @@ public class Conversion {
 
     /**
      * 
-     * @param LocalDate
+     * @param FechaNacimiento
      * @return gregorianCalendar
      */
     public static GregorianCalendar convertLDtoGre(LocalDate date) {

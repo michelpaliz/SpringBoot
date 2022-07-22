@@ -2,26 +2,19 @@ package com.testing.demo.Models;
 
 import java.time.LocalDate;
 import java.time.Period;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.ManyToAny;
+import org.aspectj.lang.annotation.After;
+
+import com.testing.demo.Models.interfaces.IFechaNacimiento;
 
 import lombok.Data;
-import lombok.NonNull;
 
 // @Table(name = "empleados")
 @Data
@@ -33,14 +26,17 @@ public abstract class Persona {
     @NotNull
     @Size(min = 9, max = 9, message = "El dni no es correcto")
     private String dni;
-    @NotNull(message = "El nombre es requerido")
+    @NotNull
+    @Size(min = 1, message = "El nombre es requerido")
     private String nombre;
     @NotNull
-    @Email
+    @Email(message = "El email debe ser valido")
+    @Size(min = 1, message = "El email es requerido")
     private String email;
     // @NotNull(message = "fecha incorrecta")
+    @NotNull(message = "La fecha de nacimiento es requerida")
+    @IFechaNacimiento("2000-01-01")
     private LocalDate fechaNacimiento;
-    // @NotNull(message = "edad incorrecta")
     private Integer edad;
 
     public Persona() {

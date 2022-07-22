@@ -16,7 +16,6 @@ import com.Lib.Control;
 import com.github.javafaker.Faker;
 import com.testing.demo.App;
 import com.testing.demo.Models.Empleado;
-import com.testing.demo.Models.Persona;
 import com.testing.demo.Models.repository.EmpleadoRepositorio;
 import com.testing.demo.Models.repository.PersonaRepositorio;
 import com.testing.demo.Numeric.EProfesion;
@@ -29,10 +28,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
 @Controller

@@ -2,24 +2,12 @@ package com.testing.demo.Models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.Table;
-import javax.servlet.resources.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.testing.demo.Numeric.EProfesion;
-
-import lombok.Data;
 
 @Entity
 // @IdClass(Empleado.class)
@@ -27,9 +15,9 @@ public class Empleado extends Persona implements Serializable {
     private static long cont;
     // @Id
     private long id;
+    @NotNull(message = "La profesion es necesaria")
     @Enumerated(value = EnumType.STRING)
     private EProfesion profesion;
-    @NotNull(message = "la antiguedad es requerida")
     private long antiguedad;
 
     public Empleado() {
