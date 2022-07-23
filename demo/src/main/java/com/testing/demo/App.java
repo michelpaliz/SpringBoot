@@ -5,9 +5,6 @@ import java.util.List;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.testing.demo.Models.Empleado;
 import com.testing.demo.Models.repository.EmpleadoRepositorio;
 import com.testing.demo.Models.repository.PersonaRepositorio;
 

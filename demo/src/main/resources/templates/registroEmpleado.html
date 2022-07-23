@@ -17,16 +17,19 @@
             <input type="text" th:field="*{dni}" />
             <span class="validationError" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></span>
             <br />
+            <h3>Nombre</h3>
             <label for="nombre">Nombre: </label>
             <input type="text" th:field="*{nombre}" />
             <span class="validationError" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
             <br />
+            <h3>Email</h3>
             <label for="email">Email: </label>
             <input type="email" th:field="*{email}" />
             <span class="validationError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
             <br />
+            <h3>Fecha Nacimiento</h3>
             <label for="fechaNacimiento">Fecha Nacimiento: </label>
-            <input type="date" th:field="*{fechaNacimiento}" />
+            <input type="text" th:field="*{fechaNacimiento}" />
             <span class="validationError" th:if="${#fields.hasErrors('fechaNacimiento')}"
                 th:errors="*{fechaNacimiento}"></span>
             <br />
@@ -37,7 +40,7 @@
             <br />
             <h3>Antiguedad</h3>
             <label for="antiguedad">Antiguedad: </label>
-            <input type="number" th:field="*{antiguedad}" />
+            <input type="text" th:field="*{antiguedad}" />
             <span class="validationError" th:if="${#fields.hasErrors('antiguedad')}" th:errors="*{antiguedad}"></span>
             <br />
             <input type="submit" value="Submit Empleado">

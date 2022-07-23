@@ -8,9 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import org.aspectj.lang.annotation.After;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.testing.demo.Models.interfaces.IFechaNacimiento;
 
@@ -27,15 +29,15 @@ public abstract class Persona {
     @Size(min = 9, max = 9, message = "El dni no es correcto")
     private String dni;
     @NotNull
-    @Size(min = 1, message = "El nombre es requerido")
+    @Size(min = 1, max = 30, message = "El nombre no es correcto")
     private String nombre;
     @NotNull
     @Email(message = "El email debe ser valido")
     @Size(min = 1, message = "El email es requerido")
     private String email;
-    // @NotNull(message = "fecha incorrecta")
     @NotNull(message = "La fecha de nacimiento es requerida")
-    @IFechaNacimiento("2000-01-01")
+    @Past
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate fechaNacimiento;
     private Integer edad;
 

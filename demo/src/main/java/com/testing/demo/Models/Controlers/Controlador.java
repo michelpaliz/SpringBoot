@@ -64,7 +64,7 @@ public class Controlador {
 			LocalDate fechaNacimiento = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 			// Integer edad = Period.between(fechaNacimiento, LocalDate.now()).getYears();
 			profesion = profesion.getRandom();
-			int antiguedad = fk.random().nextInt(0, 10);
+			long antiguedad = fk.random().nextInt(0, 10);
 			empleado = new Empleado(dni, nombre, email, fechaNacimiento, profesion, antiguedad);
 			empleadoRepositorio.save(empleado);
 			empleados.add(empleado);
